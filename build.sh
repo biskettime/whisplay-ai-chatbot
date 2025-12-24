@@ -24,6 +24,12 @@ fi
 
 source ~/.bashrc
 
+# Use Node.js 20 via nvm (required by @google/genai)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm use 20 --silent 2>/dev/null || nvm use --delete-prefix v20.19.6 --silent
+echo "Using Node.js $(node --version)"
+
 if [ "$use_npm" = true ]; then
   echo "Using npm to build the project."
   npm install --registry=$NPM_REGISTRY
